@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Custom Website</title>
+	<link rel="stylesheet" href="static/register.css">
+    <style>* {box-sizing: border-box}</style>
+</head>
+<body>
+	<div class="wrapper">
+			<nav class="navbar">
+				<img class="logo" src="logo.png">
+				<ul>
+					<li><a class="active" href="#">Home</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="#">Services</a></li>
+					<li><a href="#">Contact</a></li>
+					<li><a href="#">Feedback</a></li>
+				</ul>
+			</nav>
+			<div class="center">
+                  {% if messages %}
+                  <ul class="messages">
+                      {% for message in messages %}
+                      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                          {{ message }}
+                      </li>
+                      {% endfor %}
+                  </ul>
+                  {% endif %}
+
+                <form action="/register" method="post">
+                    {% csrf_token %}
+                    <div class="container">
+                      <h1>Register</h1>
+                      <br>
+                      <p>Please fill in this form to create an account.</p>
+                      <br>
+                      <hr>
+                      <label for="username"><b>University Seat Number</b></label>
+                      <input type="text" placeholder="USN" name="usn" id="username" required>
+
+                      <label for="fname"><b>Full name</b></label>
+                      <input type="text" placeholder="Full Name" name="fname" id="fname" required>
+
+                      <label for="email"><b>Email</b></label>
+                      <input type="text" placeholder="Enter Email" name="email" id="email" required>
+                  
+                      <label for="psw"><b>Password</b></label>
+                      <input type="password" placeholder="Enter Password" name="password" id="password" required>
+                
+                      <hr>
+                  
+                      <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+                      <button type="submit" class="registerbtn">Register</button>
+                    </div>
+                  
+                    <div class="container signin">
+                      <p>Already have an account? <a href="/signin">Sign in</a>.</p>
+                    </div>
+                  </form>
+		</div>
+		</div>
+</body>
+</html>
